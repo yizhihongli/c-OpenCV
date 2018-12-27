@@ -3,15 +3,18 @@
 
 using namespace cv;
 int main() {
-	/*
-	IMREAD_UNCHANGED  || <0     原图
-	IMREAD_GRAYSCALE  || =0     灰度图
-	IMREAD_COLOR RGB  || >0     加载
-	*/
-	//Mat src = imread("1.png", 0);//注意是 /  用 \ 会找不到图片
-	Mat src = imread("1.png", IMREAD_GRAYSCALE);//与上面0一样
-	namedWindow("1", WINDOW_AUTOSIZE);
-	imshow("1", src);
+	Mat src = imread("1.png");//与上面0一样
+	namedWindow("原图", WINDOW_AUTOSIZE);
+	imshow("原图", src);
+
+	//色彩转换 转换方式特别多
+	namedWindow("处理图", WINDOW_AUTOSIZE);
+	Mat src2;
+	cvtColor(src, src2, COLOR_BGRA2GRAY);
+	imshow("处理图", src2);
+
+	//保存图片
+	imwrite("src2.jpg", src2);
 	waitKey();
 	return 0;
 }
